@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Weather</title>
+    <style type="text/css">
+        button,
+        div,
+        form,
+        input {
+            margin: 15px;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Weather</h1>
+
+        <!-- Rendered Buttons will get Dumped Here  -->
+        <div id="buttons-view"></div>
+
+        <form id="weather-form">
+            <label for="weather-input">Add a city, Yo!</label>
+            <input type="text" id="weather-input"><br>
+
+            <!-- Button triggers new movie to be added -->
+            <input id="add-weather" type="submit" value="Add a city, Yo!">
+        </form>
+
+        <!--  will Get Dumped Here -->
+        <div id="weather-view"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            // Initial array of movies
+            var cities = ["London", "Brooklyn", "Moscow", "Norilsk"];
+
+            // Function for dumping the JSON content for each button into the div
+            function displayWeatherInfo() {
+
+                var city = $(this).attr("data-name");
+                var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&APPID=8c805a236f343d5723869bf3cdcb969a";
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+
+                    console.log(response)
+                    // Creating a div to hold the weather
+                    var weatherDiv = $("<div class='weather'>");
+
+                    //city name
+                    var name = response.city.name;
+                    var pZero = $("<p>").text("City: " + name);
+                    weatherDiv.append(pZero);
+                    // country name
+                    var name = response.city.country;
+                    var pOne = $("<p>").text("Country: " + name);
+                    weatherDiv.append(pOne);
+                    //Date
+                    var date1 = response.list[0].dt_txt
+                    var dateOne = $("<p>").text("Date: " + date1);
+                    weatherDiv.append(dateOne);
+                    //weather today
+                    var weatherC = response.list[0].weather[0].main;
+                    var pTwo = $("<p>").text("Weather : " + weatherC);
+                    weatherDiv.append(pTwo);
+                    //description today
+                    var decriptionOne = response.list[0].weather[0].description;
+                    var dOne = $("<p>").text("Weather description : " + decriptionOne);
+                    weatherDiv.append(dOne);
+                    // Temperature
+                    var main = response.list[0].main.temp;
+                    var temperature = $("<p>").text("Temperature: " + main);
+                    weatherDiv.append(temperature);
+                    //Humidity
+                    var a = response.list[0].main.humidity;
+                    var humidityOne = $("<p>").text("Humidity: " + a);
+                    weatherDiv.append(humidityOne);
+                    //Wind speed
+                    var f = response.list[0].wind.speed;
+                    var windOne = $("<p>").text("Wind speed: " + f);
+                    weatherDiv.append(windOne);
+                    /////////////////////
+                    //Date
+                    var date2 = response.list[8].dt_txt
+                    var dateTwo = $("<p>").text("Date: " + date2);
+                    weatherDiv.append(dateTwo);
+                    //weather
+                    var weatherD = response.list[8].weather[0].main;
+                    var pThree = $("<p>").text("Weather : " + weatherD);
+                    weatherDiv.append(pThree);
+                    //description
+                    var decriptionTwo = response.list[8].weather[0].description;
+                    var dTwo = $("<p>").text("Weather description: " + decriptionTwo);
+                    weatherDiv.append(dTwo);
+                    // Temperature
+                    var main2 = response.list[8].main.temp;
+                    var temperatureOne = $("<p>").text("Temperature: " + main2);
+                    weatherDiv.append(temperatureOne);
+                    //Humidity
+                    var b = response.list[8].main.humidity;
+                    var humidityTwo = $("<p>").text("Humidity: " + b);
+                    weatherDiv.append(humidityTwo);
+                    //Wind speed
+                    var g = response.list[8].wind.speed;
+                    var windTwo = $("<p>").text("Wind speed: " + g);
+                    weatherDiv.append(windTwo);
+                    ///////////////////////
+                    //Date
+                    var date3 = response.list[16].dt_txt
+                    var dateThree = $("<p>").text("Date: " + date3);
+                    weatherDiv.append(dateThree);
+                    //weather
+                    var weatherE = response.list[16].weather[0].main;
+                    var pFour = $("<p>").text("Weather : " + weatherE);
+                    weatherDiv.append(pFour);
+                    //description
+                    var decriptionThree = response.list[16].weather[0].description;
+                    var dThree = $("<p>").text("Weather description : " + decriptionThree);
+                    weatherDiv.append(dThree);
+                    // Temperature
+                    var main3 = response.list[16].main.temp;
+                    var temperatureTwo = $("<p>").text("Temperature: " + main3);
+                    weatherDiv.append(temperatureTwo);
+                    //Humidity
+                    var c = response.list[16].main.humidity;
+                    var humidityThree = $("<p>").text("Humidity: " + c);
+                    weatherDiv.append(humidityThree);
+                    //Wind speed
+                    var h = response.list[16].wind.speed;
+                    var windThree = $("<p>").text("Wind speed: " + h);
+                    weatherDiv.append(windThree);
+                    /////////////////////////
+                    //Date
+                    var date4 = response.list[24].dt_txt
+                    var dateFour = $("<p>").text("Date: " + date4);
+                    weatherDiv.append(dateFour);
+                    //weather
+                    var weatherF = response.list[24].weather[0].main;
+                    var pFive = $("<p>").text("Weather : " + weatherF);
+                    weatherDiv.append(pFive);
+                    //description
+                    var decriptionFour = response.list[24].weather[0].description;
+                    var dFour = $("<p>").text("Weather description : " + decriptionFour);
+                    weatherDiv.append(dFour);
+                    // Temperature
+                    var main4 = response.list[24].main.temp;
+                    var temperatureThree = $("<p>").text("Temperature: " + main4);
+                    weatherDiv.append(temperatureThree);
+                    //Humidity
+                    var d = response.list[24].main.humidity;
+                    var humidityFour = $("<p>").text("Humidity: " + d);
+                    weatherDiv.append(humidityFour);
+                    //Wind speed
+                    var i = response.list[24].wind.speed;
+                    var windFour = $("<p>").text("Wind speed: " + i);
+                    weatherDiv.append(windFour);
+                    ///////////////////
+
+                    //Date
+                    var date5 = response.list[32].dt_txt
+                    var dateFive = $("<p>").text("Date: " + date5);
+                    weatherDiv.append(dateFive);
+                    //weather
+                    var weatherG = response.list[32].weather[0].main;
+                    var pSix = $("<p>").text("Weather : " + weatherG);
+                    weatherDiv.append(pSix);
+                    //description
+                    var decriptionFive = response.list[32].weather[0].description;
+                    var dFive = $("<p>").text("Weather description : " + decriptionFive);
+                    weatherDiv.append(dFive);
+                    // Temperature
+                    var main5 = response.list[32].main.temp;
+                    var temperatureFour = $("<p>").text("Temperature: " + main5 + "° F");
+                    weatherDiv.append(temperatureFour);
+                    //Humidity
+                    var e = response.list[32].main.humidity;
+                    var humidityFive = $("<p>").text("Humidity: " + e);
+                    weatherDiv.append(humidityFive);
+                    //Wind speed
+                    var j = response.list[32].wind.speed;
+                    var windFive = $("<p>").text("Wind speed: " + j);
+                    weatherDiv.append(windFive);
+                    /////////
+                    // Date
+
+                    //Icon image (visual representation of weather conditions)
+
+                    // // Putting the entire WEATHER above the previous WEATHER CASTS
+                    $("#weather-view").prepend(weatherDiv);
+                });
+
+            }
+            var city = $(this).attr("data-name");
+            var settings =   {
+	"async": true,
+    "crossDomain": true,
+    "URL":"https://weatheronline2-uv-index-v1.p.rapidapi.com/api/getlocation?city=" + city,
+            "method": "GET",
+	"headers": {
+		"x-rapidapi-host": "weatheronline2-uv-index-v1.p.rapidapi.com",
+		"x-rapidapi-key": "30f839db05mshe7f495081112b8dp1436f0jsn4057e5ce7c25"}}
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+
+
+            // Function for displaying movie data
+            function renderButtons() {
+
+                // Deleting the buttons prior to adding new movies
+                // (this is necessary otherwise you will have repeat buttons)
+                $("#buttons-view").empty();
+
+                // Looping through the array of movies
+                for (var i = 0; i < cities.length; i++) {
+
+                    // Then dynamically generating buttons for each movie in the array
+                    // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+                    var a = $("<button>");
+                    // Adding a class of movie to our button
+                    a.addClass("city");
+                    // Adding a data-attribute
+                    a.attr("data-name", cities[i]);
+                    // Providing the initial button text
+                    a.text(cities[i]);
+                    // Adding the button to the buttons-view div
+                    $("#buttons-view").append(a);
+                }
+            }
+
+            // This function handles events where one button is clicked
+            $("#add-weather").on("click", function (event) {
+                event.preventDefault();
+
+                // This line grabs the input from the textbox
+                var city = $("#weather-input").val().trim();
+
+                // Adding the movie from the textbox to our array
+                cities.push(city);
+                console.log(cities);
+
+                // Calling renderButtons which handles the processing of our movie array
+                renderButtons();
+            });
+
+            // Function for displaying the movie info
+            // Using $(document).on instead of $(".movie").on to add event listeners to dynamically generated elements
+            $(document).on("click", ".city", displayWeatherInfo);
+
+            // Calling the renderButtons function to display the initial buttons
+            renderButtons();
+        </script>
+    </div>
+</body>
+
+</html>
